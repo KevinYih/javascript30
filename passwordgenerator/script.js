@@ -1,4 +1,6 @@
 const pwBox = document.getElementById("password");
+const copyImg = document.getElementById("copyImg");
+
 const length = 16;
 
 const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -65,5 +67,18 @@ function createPassword() {
   }
   pwBox.value = password;
 }
+
+copyImg.addEventListener("click", () => {
+  const text = pwBox.value;
+  const tmp = document.createElement("textarea");
+  tmp.value = text;
+
+  document.body.appendChild(tmp);
+
+  tmp.select();
+  document.execCommand("copy");
+
+  document.body.removeChild(tmp);
+});
 
 genBtn.addEventListener("click", createPassword);
