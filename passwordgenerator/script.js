@@ -1,7 +1,6 @@
 const pwBox = document.getElementById("password");
 const copyImg = document.getElementById("copyImg");
-
-const length = 16;
+const pwLen = document.getElementById("length");
 
 const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -57,10 +56,11 @@ function createPassword() {
     return;
   }
   let password = "";
-  password += upperCase[Math.floor(Math.random() * upperCase.length)];
-  password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
-  password += number[Math.floor(Math.random() * number.length)];
-  password += symbol[Math.floor(Math.random() * symbol.length)];
+  // password += upperCase[Math.floor(Math.random() * upperCase.length)];
+  // password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+  // password += number[Math.floor(Math.random() * number.length)];
+  // password += symbol[Math.floor(Math.random() * symbol.length)];
+  const length = pwLen.value;
 
   while (length > password.length) {
     password += selectedChars[Math.floor(Math.random() * selectedChars.length)];
