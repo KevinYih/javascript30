@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generate<br /><span>Random Password</span></h1>
+      <h2>Choose the options(at least one option):</h2>
+      <div class="options">
+        <button class="opBtn" id="uppBtn">ABC</button>
+        <button class="opBtn" id="lowBtn">abc</button>
+        <button class="opBtn" id="numBtn">123</button>
+        <button class="opBtn" id="symBtn">#$%</button>
+      </div>
+      <div class="display">
+        <input type="text" id="password" placeholder="Password" readonly />
+        <img src="images/copy.png" alt="copy" />
+      </div>
+      <button class="genBtn" id="genB">
+        <img src="images/generate.png" alt="generate" /> Generate
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

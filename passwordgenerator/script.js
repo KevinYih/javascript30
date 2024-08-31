@@ -1,0 +1,69 @@
+const pwBox = document.getElementById("password");
+const length = 16;
+
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+const number = "0123456789";
+const symbol = "!@#$%^&*()_+|}{<>/=";
+
+let selectedChars = "";
+
+const allChars = upperCase + lowerCase + number + symbol;
+
+const uppBtn = document.getElementById("uppBtn");
+const lowBtn = document.getElementById("lowBtn");
+const numBtn = document.getElementById("numBtn");
+const symBtn = document.getElementById("symBtn");
+
+const genBtn = document.getElementById("genB");
+
+uppBtn.addEventListener("click", () => toggleSelection(uppBtn, upperCase));
+lowBtn.addEventListener("click", () => toggleSelection(lowBtn, lowerCase));
+numBtn.addEventListener("click", () => toggleSelection(numBtn, number));
+symBtn.addEventListener("click", () => toggleSelection(symBtn, symbol));
+
+function toggleSelection(button, charSet) {
+  if (!button.dataset.state) {
+    button.dataset.state = 0;
+  }
+  button.dataset.state = (parseInt(button.dataset.state) + 1) % 2;
+  if (parseInt(button.dataset.state) === 0) {
+    if (button === uppBtn) {
+      selectedChars = selectedChars.replace(/[A-Z]/g, "");
+      button.className = "opBtn";
+    } else if (button === lowBtn) {
+      selectedChars = selectedChars.replace(/[a-z]/g, "");
+      button.className = "opBtn";
+    } else if (button === numBtn) {
+      selectedChars = selectedChars.replace(/[0-9]/g, "");
+      button.className = "opBtn";
+    } else {
+      selectedChars = selectedChars.replace(/[!@#$%^&*()_+|}{<>/=]/g, "");
+      button.className = "opBtn";
+    }
+    // selectedChars = selectedChars.replace(new RegExp(`[${charSet}]`, "g"), "");
+  } else {
+    selectedChars += charSet;
+    button.className = "opBtnDown";
+  }
+  // alert(`selectedChars: ${selectedChars}`);
+}
+
+function createPassword() {
+  if (selectedChars === "") {
+    alert("Please select at least one character type!");
+    return;
+  }
+  let password = "";
+  password += upperCase[Math.floor(Math.random() * upperCase.length)];
+  password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+  password += number[Math.floor(Math.random() * number.length)];
+  password += symbol[Math.floor(Math.random() * symbol.length)];
+
+  while (length > password.length) {
+    password += selectedChars[Math.floor(Math.random() * selectedChars.length)];
+  }
+  pwBox.value = password;
+}
+
+genBtn.addEventListener("click", createPassword);
